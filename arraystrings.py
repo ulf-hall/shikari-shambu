@@ -82,14 +82,28 @@ def remdupes(s):
 # 1.4
 # Write a method to decide if two strings are anagrams or not.
 # _ ________________________________________________________
-def annagrammaa(s):
+def annagramma(r, s):
+    '''Return True if r & s are anagrams
+
+    >>> annagramma('','')
+    True
+    >>> annagramma('abc','cba')
+    True
+    >>> annagramma('abc', 'abc')
+    True
+    >>> annagramma('abc', 'abcd')
+    False
+    '''
+    return (len(r) == len(s)) and (sorted(r) == sorted(s))
+
+def paalindromaa(s):
     '''Return True if s in an anagram, else False
 
-    >>> annagrammaa('')
+    >>> paalindromaa('')
     True
-    >>> annagrammaa('ab')
+    >>> paalindromaa('ab')
     False
-    >>> annagrammaa('toot')
+    >>> paalindromaa('toot')
     True
     '''
     r = list(s)
@@ -97,15 +111,15 @@ def annagrammaa(s):
     r = ''.join(r)
     return s == r
 
-def annagrammaa2(s):
+def paalindromaa2(s):
     '''Return True if s in an anagram, else False
     Loop through tediously, no rev this time
 
-    >>> annagrammaa2('')
+    >>> paalindromaa2('')
     True
-    >>> annagrammaa2('ab')
+    >>> paalindromaa2('ab')
     False
-    >>> annagrammaa2('toot')
+    >>> paalindromaa2('toot')
     True
     '''
     n = len(s) - 1
