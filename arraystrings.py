@@ -202,18 +202,20 @@ def zeroify(t):
         n = len(t)
         m = len(t[0])
 
+        indices = [[],[]]
         for i in range(n):
             for j in range(m):
                 if t[i][j] == 0:
-                    return i, j
-        return None, None
+                    indices[0].append(i)
+                    indices[1].append(j)
+        return indices
 
-    i, j = findindicesofzero(t)
+    indices = findindicesofzero(t)
 
-    if (i is not None) and (j is not None):
+    if len(indices[0]) > 0:
         for x in range(len(t)):
             for y in range(len(t[0])):
-                if x == i or y == j: t[x][y] = 0
+                if x in indices[0] or y in indices[1]: t[x][y] = 0
     
     return t
 
