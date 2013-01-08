@@ -55,6 +55,65 @@ def alluniqcharsinstr3(s):
         prev = c
     return True
 
+# 1.3
+# Design an algorithm and write code to remove the duplicate characters in a string
+# without using any additional buffer. NOTE: One or two additional variables are fine.
+# An extra copy of the array is not.
+def remdupes(s):
+    '''Remove dupes
+
+    >>> remdupes('')
+    ''
+    >>> remdupes('aaaa')
+    'a'
+    >>> remdupes('abc')
+    'abc'
+    >>> remdupes('abaa')
+    'ab'
+    '''
+    l = list(s)
+    for i in range(len(l)-1, -1, -1):
+        for j in range(0, i):
+            if l[i] == l[j]:
+                del l[i]
+                break
+    return ''.join(l)
+
+# 1.4
+# Write a method to decide if two strings are anagrams or not.
+# _ ________________________________________________________
+def annagrammaa(s):
+    '''Return True if s in an anagram, else False
+
+    >>> annagrammaa('')
+    True
+    >>> annagrammaa('ab')
+    False
+    >>> annagrammaa('toot')
+    True
+    '''
+    r = list(s)
+    r.reverse()
+    r = ''.join(r)
+    return s == r
+
+def annagrammaa2(s):
+    '''Return True if s in an anagram, else False
+    Loop through tediously, no rev this time
+
+    >>> annagrammaa2('')
+    True
+    >>> annagrammaa2('ab')
+    False
+    >>> annagrammaa2('toot')
+    True
+    '''
+    n = len(s) - 1
+    for i in range(int(len(s)/2)):
+        if s[i] != s[n-i]:
+            return False
+
+    return True
 
 if __name__ == '__main__':
     doctest.testmod()
