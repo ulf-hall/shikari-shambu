@@ -172,5 +172,75 @@ def rotate90(m):
             r[n-j-1][i] = m[i][j]
     return r
             
+# 1.7
+# Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+# column is set to 0.
+# ________________
+def zeroify(t):
+    '''Do what the man says.
+
+    >>> zeroify([[1,0],[1,1],[1,1]])
+    [[0, 0], [1, 0], [1, 0]]
+    >>> zeroify([])
+    []
+    >>> zeroify([[1,1],[1,1],[1,1]])
+    [[1, 1], [1, 1], [1, 1]]
+    >>> zeroify([[0]])
+    [[0]]
+    >>> zeroify([[0,1]])
+    [[0, 0]]
+    >>> zeroify([[0],[1],[1]])
+    [[0], [0], [0]]
+    >>> zeroify([[1,0,1],[1,1,1]])
+    [[0, 0, 0], [1, 0, 1]]
+    '''
+
+    if len(t) == 0 or len(t[0]) == 0:
+        return t
+
+    def findindicesofzero(t):
+        n = len(t)
+        m = len(t[0])
+
+        for i in range(n):
+            for j in range(m):
+                if t[i][j] == 0:
+                    return i, j
+        return None, None
+
+    i, j = findindicesofzero(t)
+
+    if (i is not None) and (j is not None):
+        for x in range(len(t)):
+            for y in range(len(t[0])):
+                if x == i or y == j: t[x][y] = 0
+    
+    return t
+
+# 1.8
+# Assume you have a method isSubstring which checks if one word is a substring of
+# another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using
+# only one call to isSubstring (i.e., “waterbottle” is a rotation of “erbottlewat”).
+#        ________________________________________________________________
+
+def isrotatedbro(s, t):
+    '''True if s & t are brothers by rotation, Meh if not
+
+    >>> isrotatedbro('e', 'e')
+    True
+    >>> isrotatedbro('eh', 'he')
+    True
+    >>> isrotatedbro('tit', 'itt')
+    True
+    >>> isrotatedbro('twat', 'watt')
+    True
+    >>> isrotatedbro('heh', 'hel')
+    False
+    '''
+    if (t+t).find(s) != -1:
+        return True
+    else:
+        return False
+
 if __name__ == '__main__':
     doctest.testmod()
