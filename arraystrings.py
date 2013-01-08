@@ -115,5 +115,48 @@ def annagrammaa2(s):
 
     return True
 
+# 1.5
+# Write a method to replace all spaces in a string with ‘%20’.
+#    _ __________________________________________________
+def replace(s,x,y):
+    '''In s, replace all x with y
+
+    >>> replace('moo and more', ' ', '%20')
+    'moo%20and%20more'
+    >>> replace('', ' ', '%20')
+    ''
+    '''
+    l = list(s)
+    for i, c in enumerate(l):
+        if c == x:
+            l[i] = y
+    
+    return ''.join(l)
+
+# 1.6
+# Given an image represented by an NxN matrix, where each pixel in the image is 4
+# bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+
+def rotate90(m):
+    '''Rotate the matrix 90 deg anticlockwise.
+    Direction is hardcoded for now, but can be changed quite easily
+
+    >>> rotate90([[1,2,3],[4,5,6],[7,8,9]])
+    [[3, 6, 9], [2, 5, 8], [1, 4, 7]]
+    >>> rotate90([[1,2], [3,4]])
+    [[2, 4], [1, 3]]
+    >>> rotate90([])
+    []
+    '''
+    n = len(m)
+    r = [[None]*len(x) for x in m]
+
+    # Flip rows to columns and reverse the order to achieve the 
+    # rotation
+    for i in range(n):
+        for j in range(n):
+            r[n-j-1][i] = m[i][j]
+    return r
+            
 if __name__ == '__main__':
     doctest.testmod()
